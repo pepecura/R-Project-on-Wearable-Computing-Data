@@ -32,6 +32,6 @@ dat_final$activity_id <- factor(dat_final$activity_id, levels=c(1,2,3,4,5,6), la
 #install.packages("dplyr")
 library(plyr)
 summary_table <- ddply(dat_final, .(activity_id, subject_id), colwise(mean))
-write.csv(summary_table, file="./summary.csv")
-
+#write.csv(summary_table, file="./summary.csv")
+write.table(summary_table, file="./summary.txt", row.name=FALSE)
 # end of file. # 
