@@ -1,14 +1,14 @@
 # Analysis of activity tracking data. date: 25JAN2015.
 # read files.
-subject_train <- read.table("./coursera/Course-2/UCI HAR Dataset/train/subject_train.txt",col.names = "subject_id")
-X_train <- read.table("./coursera/Course-2/UCI HAR Dataset/train/X_train.txt")
-Y_train <- read.table("./coursera/Course-2/UCI HAR Dataset/train/Y_train.txt", col.names = "activity_id")
+subject_train <- read.table("./subject_train.txt",col.names = "subject_id")
+X_train <- read.table("./X_train.txt")
+Y_train <- read.table("./Y_train.txt", col.names = "activity_id")
 
-subject_test <- read.table("./coursera/Course-2/UCI HAR Dataset/test/subject_test.txt", col.names = "subject_id")
-X_test <- read.table("./coursera/Course-2/UCI HAR Dataset/test/X_test.txt")
-Y_test <- read.table("./coursera/Course-2/UCI HAR Dataset/test/Y_test.txt", col.names = "activity_id")
+subject_test <- read.table("./subject_test.txt", col.names = "subject_id")
+X_test <- read.table("./X_test.txt")
+Y_test <- read.table("./Y_test.txt", col.names = "activity_id")
 
-features    <- read.table("./coursera/Course-2/UCI HAR Dataset/features.txt")
+features    <- read.table("./features.txt")
 
 # append train and test tables.
 dat <- rbind(X_train, X_test)
@@ -32,8 +32,8 @@ selected_dat <- dat[,c(row_mean, row_std)]
 dat_final <- cbind(dat_subject, dat_activity, selected_dat)
 
 # label the activity field.
-dat_final$activity_id <- factor(dat_final$activity_id, levels=c(1,2,3,4,5,6), labels=c("WALKING", 
-"WALKING_UPSTAIRS", "WALKING_DOWNSTAIRS", "SITTING", "STANDING", "LAYING"))
+dat_final$activity_id <- factor(dat_final$activity_id, levels=c(1,2,3,4,5,6), 
+labels=c("WALKING", "WALKING_UPSTAIRS", "WALKING_DOWNSTAIRS", "SITTING", "STANDING", "LAYING"))
 
 #install.packages("dplyr")
 library(plyr)
